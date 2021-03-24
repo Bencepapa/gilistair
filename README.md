@@ -8,12 +8,13 @@
 
 # Files
 The screen.html is the main game while the controller.html is the controller screen shows up on mobile phones when connected via AirConsole with the main game.
+
 Index.html is a standalone version to test the game with 3 keyboard controlled players added.
 
 # How to control the players in the index.html
-Player 'Bendegúz': left/right arrow keys
-Player 'Boldi' : A/S
-Player 'Dani' : H/J
+- Player 'Bendegúz': left/right arrow keys
+- Player 'Boldi' : A/S
+- Player 'Dani' : H/J
 
 # Features
 - Eat food to grow
