@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anaconda</title>
+  <script src="pixi.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #202020;
+    }
+  </style>
+</head>
+<body>
+  <script src="randomColor.js"></script>
+  <script src="polygons.js"></script>
+  <script src="snake.js"></script>
+  <script src="food.js"></script>
+  <script src="player.js"></script>
+  <script src="main.js"></script>
+
+
+  <!-- Include the AirConsole API -->
+  <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.4.0.js"></script>
+
+
+
+    <script type="text/javascript">
+    var air_console = new AirConsole();
+    var statusoffset=0;
+    function checkDeviceID(device_id)
+    {
+      if (device_id in players)
+        return true;
+      return false;
+    }
+
+    function connect(device_id)
+    {
+        var plr = addplayer(air_console.getNickname(device_id), device_id, status_, statusoffset);
+        statusoffset = plr.addstatus(status_, statusoffset);
+        //plr.createnewsnake();
+        console.log("CONNECT: NEW CREATED " + device_id + " NAME: " + plr.name); 
+    }
+
+    air_console.onDeviceProfileChange = function(device_id)
+    {
+      if (checkDeviceID(device_id) == false)
+      {
+        players[device_id].changeName(air_console.getNickname(device_id));
+      }
+    }
+
+    air_console.onConnect = function(device_id) {
+      console.log("CONNECT " + device_id);
+
+      if (checkDeviceID(device_id) == false)
+      {
+        connect(device_id);      }
+      else
+      {
+        console.log("CONNECT: ALREADY EXSITED, old connected=" + players[device_id].connected);
+        
+        players[device_id].connected = true;
+      }
+    };
+
+    air_console.onDisconnect = function(device_id) {
+      console.log("DISCONNECT " + device_id);
+      if (checkDeviceID(device_id) == true)
+      {
+        players[device_id].connected = false;
+      }
+      else
+      {
+        console.log("DISCONNECT error: NO ID REGISTERED "+device_id);
+      }
+    };
+
+
+    // Listen for messages from other devices
+    air_console.onMessage = function(from, data) {
+      //console.log(from, data);
+
+      if (checkDeviceID(from) == false)
+      {
+        air_console.onConnect(from);
+      }
+
+
+      onAirMessage(from, data);
+/*      // We receive a message -> Send message back to the device
+      air_console.message(from, "Full of pixels!");
+
+      // Show message on device screen
+      var info = document.createElement('DIV');
+      info.innerHTML = from + "{";
+		for (var k in data) {
+			info.innerHTML += ""+k + ":" + data[k].pressed + ", ";
+		}
+	  info.innerHTML += "}";
+      //info.innerHTML = data[0];
+      document.body.appendChild(info);*/
+    };
+    </script>
+    
+    </body>
+</html>
