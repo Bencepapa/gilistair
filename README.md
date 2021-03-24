@@ -1,5 +1,7 @@
-# gilistair
+# GilistAir
 360 degree worm game. Made for an early AirConsole contest
+
+![alt text](Media/cover1.png "GilistAir cover image")
 
 # Original description
 360 degree worm game. Eat food, trap the others, grow the longest earthworm! Your smartphone is the gamepad, your browser is the console.
