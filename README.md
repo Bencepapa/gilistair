@@ -20,3 +20,4 @@ Index.html is a standalone version to test the game with 3 keyboard controlled p
 - Eat food to grow
 - Died worms turn white becoming obstacle for a while
 - Eat the Triforce to become invicible and clean dead worms
+- Split a worm or myself in half when invicible - controlling two worms at the same time
