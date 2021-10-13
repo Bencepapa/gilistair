@@ -1,6 +1,8 @@
 # GilistAir
 360 degree worm game. Made for an early AirConsole contest
 
+Try it out: https://bencepapa.github.io/gilistair/
+
 ![alt text](Media/cover1.png "GilistAir cover image")
 
 # Original description
