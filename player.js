@@ -89,7 +89,7 @@ var NAMEDRAWER = {
 var PLAYER = {
   snakes : [],
 
-  set : function(name, id, s, statusoffset)
+  set : function(name, id, AIcontrolled)
   {
     this.id = id;
     this.name = name;
@@ -101,8 +101,7 @@ var PLAYER = {
     this.score = 0;
     this.statusname = null;
     this.status = null;
-    //console.log("aaa");
-
+    this.AIcontrolled = AIcontrolled;
   },
   addstatus : function(s, statusoffset)
   {
@@ -157,7 +156,9 @@ var PLAYER = {
   {
     this.score += score;
     this.score = Math.floor(this.score);
-    this.status.text = ""+this.score;
+    if (this.status) {
+      this.status.text = ""+this.score;
+    }
   },
   update : function(s)
   {
@@ -170,6 +171,9 @@ var PLAYER = {
       {
         needremove.push(sn);
       } else {
+        if (snake.idle && this.AIcontrolled && snake.timer==50) {
+          snake.idle = false;
+        }
         if (!snake.idle && !snake.dead)
         {
           snake.checkHitFood(foods);
@@ -230,10 +234,10 @@ var PLAYER = {
 
 var players = {};
 
-function addplayer(name, id, samplesnake)
+function addplayer(name, id, AIcontrolloed = false)
 {
   var pl = Object.create(PLAYER);
-  pl.set(name, id, samplesnake);
+  pl.set(name, id, AIcontrolloed);
   players[id] = pl;
   return pl;
 }

@@ -90,6 +90,7 @@ var SNAKE = {
   deadleft : 1000,
   neededtoremove : false,
   namedrawer : null,
+  timer : 0,
 
   reset : function(x,y,angle)
   {
@@ -108,6 +109,7 @@ var SNAKE = {
     this.eatwidthcounter = 0;
     this.calc();
     this.blinkingtime=0;
+    this.timer = 0;
 
     var segment = new SEGMENT();
     segment.set(this.x,this.y,this.angle);
@@ -344,6 +346,7 @@ var SNAKE = {
 
   update : function (s) {
     var Snake = this;
+    this.timer++;
     if (this.dead)
     {
       if (this.deadleft<=0)
@@ -494,9 +497,11 @@ var SNAKE = {
   {
     if (this.idle)
     {
-        var spwn = getSpawnPoint();
-        this.reset(spwn[0],spwn[1],Math.random()*pi*2);
-        this.forward(1.0, 1.0); 
+      this.dead=true;
+      this.deadleft=0;
+//        var spwn = getSpawnPoint();
+//        this.reset(spwn[0],spwn[1],Math.random()*pi*2);
+//        this.forward(1.0, 1.0); 
     }
     else
     {

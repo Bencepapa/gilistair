@@ -47,16 +47,18 @@
   
   //creating 3 players
 var plr;
-plr = addplayer("Boldi", 1, status_, statusoffset);
+plr = addplayer("Enemy", 1, true);
+//statusoffset = plr.addstatus(status_, statusoffset);
+plr.createnewsnake();
+
+plr = addplayer("You", 2);
 statusoffset = plr.addstatus(status_, statusoffset);
 plr.createnewsnake();
-plr = addplayer("Bendegúz", 2, status_, statusoffset);
-statusoffset = plr.addstatus(status_, statusoffset);
-plr.createnewsnake();
-plr = addplayer("Dániel", 3, status_, statusoffset);
-statusoffset = plr.addstatus(status_, statusoffset);
-plr.createnewsnake();
-plr.createnewsnake();
+
+//plr = addplayer("Enemy", 3, true);
+//statusoffset = plr.addstatus(status_, statusoffset);
+//plr.createnewsnake();
+//plr.createnewsnake();
   
   </script>
   

@@ -61,8 +61,8 @@ else
 //var GameOver=false;
 //var scores = 0;
 var mytimer = 0;
-var GAME_WIDTH = 1920; //1600;
-var GAME_HEIGHT = 1080; //1080;
+var GAME_WIDTH = 540; //1920 //1600;
+var GAME_HEIGHT = 960; //1080 //1080;
 var renderer = PIXI.autoDetectRenderer(GAME_WIDTH,GAME_HEIGHT);
 renderer.view.style.display="block";
 renderer.view.style.marginLeft="auto";
