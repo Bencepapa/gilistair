@@ -50,7 +50,7 @@
   addEventListener("mouseup", touchHandler);
   function touchHandler(e) {
     console.log(e);
-    if (e.touches || e.type == "mousedown") {
+    if (e.type == "touchstart" || e.type == "mousedown") {
       var x;
       if (e.type == "mousedown") {
         console.log(e.pageX);
