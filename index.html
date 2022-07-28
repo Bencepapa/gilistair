@@ -61,10 +61,11 @@
          x = e.touches[0].pageX;
       }
       console.log(x);
-      if (x < window.innerWidth * 0.4)
+      if (x < window.innerWidth * 0.5) {
         onAirMessage(2, {left : {pressed: true}, right : {pressed: false}});
-        if (x > window.innerWidth * 0.6)
+      } else {
         onAirMessage(2, {right : {pressed: true}, left : {pressed: false}});
+      }
     } else {
       console.log("mouseup");
      onAirMessage(2, {left : {pressed: false}, right : {pressed: false}});
