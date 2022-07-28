@@ -27,11 +27,12 @@ var SNAKESTYLE  = {
 
 var NAMEDRAWER = {
  
-  set : function(name, color)
+  set : function(name, color, snake)
   {
     this.name = name;
     this.color = color;
     this.timer = 200;
+    this.snake = snake;
     
     this.draw();
     
@@ -63,6 +64,10 @@ var NAMEDRAWER = {
     if (this.timer>0)
     {
       --this.timer;
+      if (this.snake) {
+        this.graphics.x = this.snake.x;
+        this.graphics.y = this.snake.y-50;
+      }
       if (this.timer<30)
       {
         this.graphics.alpha = this.timer/30.0;
@@ -71,6 +76,10 @@ var NAMEDRAWER = {
     else
     {
       this.graphics.visible = false;
+      if (this.snake) {
+        this.snake.namedrawer = null;
+        this.snake = null;
+      }
     }
   }
   
@@ -124,6 +133,8 @@ var PLAYER = {
   },
   removesnake : function(snake)
   {
+    snake.namedrawer.snake = null;
+    snake.namedrawer.timer = 0;
     this.snakes.remove(snake);
   }, 
   removeall : function()
@@ -206,10 +217,12 @@ var PLAYER = {
     SnakeToAdd.setplayer(this);
     SnakeToAdd.forward(1.0, 1.0);
     SnakeToAdd.setstyle(this.snakestyle);
-    this.snakes.push(SnakeToAdd);
+
     var namedrawer = Object.create(NAMEDRAWER);
-    namedrawer.set(this.name, this.snakestyle.color);
+    namedrawer.set(this.name, this.snakestyle.color, SnakeToAdd);
     namedrawer.move(SnakeToAdd.x, SnakeToAdd.y-50);
+    SnakeToAdd.namedrawer = namedrawer;
+    this.snakes.push(SnakeToAdd);
     this.namedrawers.push(namedrawer);
     NameContainer.addChild(namedrawer.graphics);
   }

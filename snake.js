@@ -89,6 +89,7 @@ var SNAKE = {
   dead : false,
   deadleft : 1000,
   neededtoremove : false,
+  namedrawer : null,
 
   reset : function(x,y,angle)
   {
@@ -502,6 +503,10 @@ var SNAKE = {
         //this.player.createnewsnake();
         this.color=0xffffff;
         this.dead=true;
+        if (this.namedrawer) {
+          this.namedrawer.snake=null;
+          this.namedrawer.timer=0;
+        }
     }
   },
   addscore : function(score)
